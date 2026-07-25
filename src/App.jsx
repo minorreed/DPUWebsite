@@ -276,13 +276,47 @@ function Header() {
 }
 
 function Hero() {
+  const [videoReady, setVideoReady] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReduceMotion(query.matches);
+    const onChange = (event) => setReduceMotion(event.matches);
+    query.addEventListener('change', onChange);
+    return () => query.removeEventListener('change', onChange);
+  }, []);
+
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] overflow-hidden bg-pine pt-24 text-white sm:min-h-[88vh]"
+      className="relative min-h-[92svh] overflow-hidden bg-pine pt-24 text-white sm:min-h-[88svh]"
     >
-      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,59,42,0.82),rgba(20,128,74,0.65)),url('/images/Hero%20image.jpg')] bg-cover bg-center" />
+      {/* Poster sits underneath so the first paint is never empty. */}
+      <div className="absolute inset-0 bg-[url('/images/Hero_Video_Poster.jpg')] bg-cover bg-center" />
 
+      {reduceMotion ? null : (
+        <video
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+            videoReady ? 'opacity-100' : 'opacity-0'
+          }`}
+          src="/images/Hero_Video.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+          onCanPlay={() => setVideoReady(true)}
+        />
+      )}
+
+      {/* Brand tint: keeps the footage on-palette without flattening it. */}
+      <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(7,59,42,0.62),rgba(20,128,74,0.22))] md:bg-[linear-gradient(120deg,rgba(7,59,42,0.5),rgba(20,128,74,0.12))]" />
+      {/* Copy scrim: dark under the text, clear over the action. */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(7,59,42,0.85),transparent_62%)] md:bg-[linear-gradient(to_right,rgba(7,59,42,0.85),rgba(7,59,42,0.42)_42%,transparent_74%)]" />
+      {/* Bottom fade so the overlapping TrustBar sits on a clean seam. */}
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(to_top,#073b2a,transparent)]" />
 
       <div className="relative mx-auto flex max-w-7xl flex-col justify-center px-4 pb-16 pt-14 sm:px-6 md:pt-20 lg:px-8">
         <div className="flex max-w-3xl flex-col justify-center">
@@ -290,10 +324,10 @@ function Hero() {
             <Trophy className="h-4 w-4 text-gold" aria-hidden="true" />
             Mobile golf simulator events
           </p>
-          <h1 className="text-5xl font-black leading-[1.02] text-white sm:text-6xl lg:text-7xl">
+          <h1 className="text-5xl font-black leading-[1.02] tracking-[-0.02em] text-white [text-shadow:0_2px_28px_rgba(7,59,42,0.5)] sm:text-6xl lg:text-7xl">
             Bring the Driving Range to Your Next Event
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/82 sm:text-xl">
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85 [text-shadow:0_1px_16px_rgba(7,59,42,0.5)] sm:text-xl">
             DrivingParU delivers a mobile golf simulator experience for corporate events,
             birthdays, private parties, and more.
           </p>
