@@ -205,7 +205,7 @@ function SectionHeading({ eyebrow, title, description, light = false }) {
         {title}
       </h2>
       {description ? (
-        <p className={`mt-4 text-base leading-7 ${light ? 'text-white/78' : 'text-ink/70'}`}>
+        <p className={`mt-4 text-base leading-7 ${light ? 'text-white/80' : 'text-ink/70'}`}>
           {description}
         </p>
       ) : null}
@@ -215,11 +215,30 @@ function SectionHeading({ eyebrow, title, description, light = false }) {
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Over the hero video the bar stays clear and rides on a gradient scrim, so the
+  // footage is never cut off by a band. Past the hero it lands on solid cream.
+  // The open mobile menu always needs the solid panel behind it.
+  const solid = scrolled || menuOpen;
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/40 bg-cream/88 shadow-sm backdrop-blur-xl">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        solid
+          ? 'border-pine/10 bg-cream/90 shadow-sm backdrop-blur-xl'
+          : 'border-transparent bg-[linear-gradient(to_bottom,rgba(0,0,0,0.55),transparent)]'
+      }`}
+    >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a href="#home" onClick={closeMenu} className="flex items-center gap-3">
           <img
@@ -227,7 +246,13 @@ function Header() {
             alt={siteConfig.logoAlt}
             className="h-11 w-11 rounded-full border-2 border-white object-cover shadow-md ring-2 ring-fairway/25"
           />
-          <span className="text-lg font-black text-pine sm:text-xl">{siteConfig.companyName}</span>
+          <span
+            className={`text-lg font-black transition-colors duration-300 sm:text-xl ${
+              solid ? 'text-pine' : 'text-white [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]'
+            }`}
+          >
+            {siteConfig.companyName}
+          </span>
         </a>
 
         <div className="hidden items-center gap-7 lg:flex">
@@ -235,7 +260,11 @@ function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-semibold text-ink/75 transition hover:text-fairway"
+              className={`text-sm font-semibold transition-colors duration-300 ${
+                solid
+                  ? 'text-ink/75 hover:text-fairway'
+                  : 'text-white/85 hover:text-white [text-shadow:0_1px_12px_rgba(0,0,0,0.6)]'
+              }`}
             >
               {link.label}
             </a>
@@ -246,7 +275,11 @@ function Header() {
         <button
           type="button"
           onClick={() => setMenuOpen((current) => !current)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-pine/10 bg-white text-pine shadow-sm lg:hidden"
+          className={`inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-sm transition-colors duration-300 lg:hidden ${
+            solid
+              ? 'border-pine/10 bg-white text-pine'
+              : 'border-white/30 bg-white/10 text-white backdrop-blur'
+          }`}
           aria-label="Toggle navigation"
           aria-expanded={menuOpen}
         >
@@ -320,7 +353,7 @@ function Hero() {
 
       <div className="relative mx-auto flex max-w-7xl flex-col justify-center px-4 pb-16 pt-14 sm:px-6 md:pt-20 lg:px-8">
         <div className="flex max-w-3xl flex-col justify-center">
-          <p className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/25 bg-white/12 px-4 py-2 text-sm font-bold text-sand backdrop-blur">
+          <p className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-bold text-sand backdrop-blur">
             <Trophy className="h-4 w-4 text-gold" aria-hidden="true" />
             Mobile golf simulator events
           </p>
@@ -376,13 +409,13 @@ function EventsSection() {
           {events.map(({ title, description, icon: Icon }) => (
             <article
               key={title}
-              className="group rounded-[1.75rem] border border-pine/8 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft"
+              className="group rounded-[1.75rem] border border-pine/10 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft"
             >
               <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-fairway/10 text-fairway transition group-hover:bg-fairway group-hover:text-white">
                 <Icon className="h-6 w-6" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-black text-pine">{title}</h3>
-              <p className="mt-3 leading-7 text-ink/68">{description}</p>
+              <p className="mt-3 leading-7 text-ink/70">{description}</p>
             </article>
           ))}
         </div>
@@ -407,13 +440,13 @@ function HowItWorks() {
           {steps.map((step, index) => (
             <article
               key={step.title}
-              className="relative rounded-[1.75rem] border border-pine/8 bg-cream p-7 shadow-sm"
+              className="relative rounded-[1.75rem] border border-pine/10 bg-cream p-7 shadow-sm"
             >
               <span className="mb-8 inline-flex h-12 w-12 items-center justify-center rounded-full bg-pine text-lg font-black text-gold">
                 {index + 1}
               </span>
               <h3 className="text-2xl font-black text-pine">{step.title}</h3>
-              <p className="mt-3 leading-7 text-ink/68">{step.description}</p>
+              <p className="mt-3 leading-7 text-ink/70">{step.description}</p>
             </article>
           ))}
         </div>
@@ -456,7 +489,7 @@ function PackagesSection() {
                     <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-fairway text-white">
                       <ArrowRight className="h-3 w-3" aria-hidden="true" />
                     </span>
-                    <span className="text-ink/76">
+                    <span className="text-ink/75">
                       {feature}
                     </span>
                   </li>
@@ -483,7 +516,7 @@ function CtaBanner() {
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-gold">Book online</p>
           <h2 className="mt-3 text-3xl font-black sm:text-4xl">Ready to Tee Up Your Event?</h2>
-          <p className="mt-3 text-lg text-white/78">Reserve your mobile golf simulator experience today.</p>
+          <p className="mt-3 text-lg text-white/80">Reserve your mobile golf simulator experience today.</p>
         </div>
         <BookingButton className="mt-7 shrink-0 lg:mt-0">Book Now</BookingButton>
       </div>
@@ -558,8 +591,8 @@ function Footer() {
         </div>
         <div>
           <h3 className="font-black text-gold">Contact</h3>
-          <p className="mt-4 text-white/72">Email: {siteConfig.contact.email}</p>
-          <p className="mt-2 text-white/72">Phone: {siteConfig.contact.phone}</p>
+          <p className="mt-4 text-white/70">Email: {siteConfig.contact.email}</p>
+          <p className="mt-2 text-white/70">Phone: {siteConfig.contact.phone}</p>
         </div>
         <div>
           <h3 className="font-black text-gold">Links</h3>
@@ -570,7 +603,7 @@ function Footer() {
                 href={link.href}
                 target={link.label === 'Book Now' ? '_blank' : undefined}
                 rel={link.label === 'Book Now' ? 'noreferrer' : undefined}
-                className="text-white/72 transition hover:text-white"
+                className="text-white/70 transition hover:text-white"
               >
                 {link.label}
               </a>
@@ -578,7 +611,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-10 max-w-7xl border-t border-white/12 pt-6 text-sm text-white/55">
+      <div className="mx-auto mt-10 max-w-7xl border-t border-white/10 pt-6 text-sm text-white/55">
         © 2026 {siteConfig.companyName}. All rights reserved.
       </div>
     </footer>
