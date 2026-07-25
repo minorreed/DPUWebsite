@@ -290,7 +290,7 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[92svh] overflow-hidden bg-pine pt-24 text-white sm:min-h-[88svh]"
+      className="relative min-h-[92svh] overflow-hidden bg-black pt-24 text-white sm:min-h-[88svh]"
     >
       {/* Poster sits underneath so the first paint is never empty. */}
       <div className="absolute inset-0 bg-[url('/images/Hero_Video_Poster.jpg')] bg-cover bg-center" />
@@ -311,12 +311,12 @@ function Hero() {
         />
       )}
 
-      {/* Brand tint: keeps the footage on-palette without flattening it. */}
-      <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(7,59,42,0.62),rgba(20,128,74,0.22))] md:bg-[linear-gradient(120deg,rgba(7,59,42,0.5),rgba(20,128,74,0.12))]" />
+      {/* Even darken so the bright simulator screen never blows out. */}
+      <div className="absolute inset-0 bg-black/25" />
       {/* Copy scrim: dark under the text, clear over the action. */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(7,59,42,0.85),transparent_62%)] md:bg-[linear-gradient(to_right,rgba(7,59,42,0.85),rgba(7,59,42,0.42)_42%,transparent_74%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.85),rgba(0,0,0,0.2)_60%,transparent)] md:bg-[linear-gradient(to_right,rgba(0,0,0,0.8),rgba(0,0,0,0.35)_45%,transparent_78%)]" />
       {/* Bottom fade so the overlapping TrustBar sits on a clean seam. */}
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(to_top,#073b2a,transparent)]" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(to_top,#000,transparent)]" />
 
       <div className="relative mx-auto flex max-w-7xl flex-col justify-center px-4 pb-16 pt-14 sm:px-6 md:pt-20 lg:px-8">
         <div className="flex max-w-3xl flex-col justify-center">
@@ -324,10 +324,10 @@ function Hero() {
             <Trophy className="h-4 w-4 text-gold" aria-hidden="true" />
             Mobile golf simulator events
           </p>
-          <h1 className="text-5xl font-black leading-[1.02] tracking-[-0.02em] text-white [text-shadow:0_2px_28px_rgba(7,59,42,0.5)] sm:text-6xl lg:text-7xl">
+          <h1 className="text-5xl font-black leading-[1.02] tracking-[-0.02em] text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] sm:text-6xl lg:text-7xl">
             Bring the Driving Range to Your Next Event
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85 [text-shadow:0_1px_16px_rgba(7,59,42,0.5)] sm:text-xl">
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85 [text-shadow:0_1px_16px_rgba(0,0,0,0.55)] sm:text-xl">
             DrivingParU delivers a mobile golf simulator experience for corporate events,
             birthdays, private parties, and more.
           </p>
