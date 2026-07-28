@@ -12,7 +12,6 @@ import {
   Menu,
   PartyPopper,
   Sparkles,
-  Trophy,
   Users,
   X,
 } from 'lucide-react';
@@ -23,9 +22,11 @@ const siteConfig = {
     'https://book.squareup.com/appointments/soyu9vwau5htpe/location/L3TK66T6TCF6B/services',
   logoPath: '/images/drivingparu-logo.jpg',
   logoAlt: 'DrivingParU golf simulator logo',
+  tagline: 'Mobile Golf Simulator Events',
   contact: {
     email: 'drivingparu@gmail.com',
     phone: '(713) 360-9990',
+    instagram: 'drivingparu',
   },
   packages: [
     {
@@ -176,10 +177,31 @@ function useRevealOnScroll() {
   }, []);
 }
 
+// lucide is dropping brand icons in v1.0, so the Instagram mark is drawn inline.
+// Same geometry and stroke weight as the lucide icons used elsewhere.
+function InstagramIcon({ className = '' }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
+
 function BookingButton({ children, className = '', variant = 'primary' }) {
   const styles =
     variant === 'primary'
-      ? 'bg-gold text-pine shadow-lg shadow-gold/20 hover:-translate-y-0.5 hover:bg-[#e7bb58]'
+      ? 'bg-fairway text-white shadow-lg shadow-fairway/25 hover:-translate-y-0.5 hover:bg-grass'
       : 'border border-white/45 bg-white/10 text-white backdrop-blur hover:bg-white/20';
 
   return (
@@ -246,12 +268,21 @@ function Header() {
             alt={siteConfig.logoAlt}
             className="h-11 w-11 rounded-full border-2 border-white object-cover shadow-md ring-2 ring-fairway/25"
           />
-          <span
-            className={`text-lg font-black transition-colors duration-300 sm:text-xl ${
-              solid ? 'text-pine' : 'text-white [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]'
-            }`}
-          >
-            {siteConfig.companyName}
+          <span className="flex flex-col leading-none">
+            <span
+              className={`text-lg font-black transition-colors duration-300 sm:text-xl ${
+                solid ? 'text-pine' : 'text-white [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]'
+              }`}
+            >
+              {siteConfig.companyName}
+            </span>
+            <span
+              className={`mt-1.5 hidden text-[0.62rem] font-bold uppercase tracking-[0.2em] transition-colors duration-300 sm:block ${
+                solid ? 'text-fairway' : 'text-white/75 [text-shadow:0_1px_10px_rgba(0,0,0,0.6)]'
+              }`}
+            >
+              {siteConfig.tagline}
+            </span>
           </span>
         </a>
 
@@ -309,40 +340,12 @@ function Header() {
 }
 
 function Hero() {
-  const [videoReady, setVideoReady] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(false);
-
-  useEffect(() => {
-    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReduceMotion(query.matches);
-    const onChange = (event) => setReduceMotion(event.matches);
-    query.addEventListener('change', onChange);
-    return () => query.removeEventListener('change', onChange);
-  }, []);
-
   return (
     <section
       id="home"
       className="relative min-h-[92svh] overflow-hidden bg-black pt-24 text-white sm:min-h-[88svh]"
     >
-      {/* Poster sits underneath so the first paint is never empty. */}
-      <div className="absolute inset-0 bg-[url('/images/Hero_Video_Poster.jpg')] bg-cover bg-center" />
-
-      {reduceMotion ? null : (
-        <video
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-            videoReady ? 'opacity-100' : 'opacity-0'
-          }`}
-          src="/images/Hero_Video.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-          onCanPlay={() => setVideoReady(true)}
-        />
-      )}
+      <div className="absolute inset-0 bg-[url('/images/Hero_Image_2.jpg')] bg-cover bg-center" />
 
       {/* Even darken so the bright simulator screen never blows out. */}
       <div className="absolute inset-0 bg-black/25" />
@@ -353,10 +356,6 @@ function Hero() {
 
       <div className="relative mx-auto flex max-w-7xl flex-col justify-center px-4 pb-16 pt-14 sm:px-6 md:pt-20 lg:px-8">
         <div className="flex max-w-3xl flex-col justify-center">
-          <p className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-bold text-sand backdrop-blur">
-            <Trophy className="h-4 w-4 text-gold" aria-hidden="true" />
-            Mobile golf simulator events
-          </p>
           <h1 className="text-5xl font-black leading-[1.02] tracking-[-0.02em] text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] sm:text-6xl lg:text-7xl">
             Bring the Driving Range to Your Next Event
           </h1>
@@ -593,6 +592,14 @@ function Footer() {
           <h3 className="font-black text-gold">Contact</h3>
           <p className="mt-4 text-white/70">Email: {siteConfig.contact.email}</p>
           <p className="mt-2 text-white/70">Phone: {siteConfig.contact.phone}</p>
+          <a
+            href={`https://www.instagram.com/${siteConfig.contact.instagram}`}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/25 px-4 py-2 text-sm font-bold text-white/80 transition hover:border-white/45 hover:bg-white/10 hover:text-white"
+          >
+            <InstagramIcon className="h-4 w-4" />@{siteConfig.contact.instagram}
+          </a>
         </div>
         <div>
           <h3 className="font-black text-gold">Links</h3>
