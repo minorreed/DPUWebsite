@@ -56,7 +56,6 @@ const siteConfig = {
       highlighted: true,
       features: [
         'Everything included in the Par Package',
-        '45-inch spectator display screen for crowd viewing',
         'Dedicated second staff member for larger groups',
         'Custom scoring and leaderboard tracking',
         'Extended equipment package for high-volume play',
