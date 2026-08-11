@@ -31,9 +31,12 @@ const siteConfig = {
   packages: [
     {
       name: 'Par Package',
-      price: '$175 / hour',
-      bestFor: 'Great for smaller gatherings and private parties',
-      highlighted: true,
+      price: '$550',
+      priceNote: '2.5-hour minimum',
+      groupSize: 'Up to 30 guests',
+      additionalHours: 'Additional hours $200',
+      bestFor: 'Backyard parties, birthdays, and small gatherings',
+      highlighted: false,
       features: [
         'Mobile golf simulator setup at your venue',
         'Tent and all equipment provided',
@@ -45,9 +48,12 @@ const siteConfig = {
     },
     {
       name: 'Birdie Package',
-      price: '$225 / hour',
-      bestFor: 'Great for larger groups and corporate events',
-      highlighted: false,
+      price: '$975',
+      priceNote: '3.5-hour minimum',
+      groupSize: '30 to 100 guests',
+      additionalHours: 'Additional hours $250',
+      bestFor: 'Corporate events, team building, and larger parties',
+      highlighted: true,
       features: [
         'Everything included in the Par Package',
         '45-inch spectator display screen for crowd viewing',
@@ -470,18 +476,29 @@ function PackagesSection() {
           {siteConfig.packages.map((eventPackage) => (
             <article
               key={eventPackage.name}
-              className="relative rounded-[1.75rem] border border-gold/30 bg-white text-pine p-7 shadow-glow transition duration-300 hover:-translate-y-1 flex flex-col"
+              className={`relative flex flex-col rounded-[1.75rem] bg-white p-7 text-pine transition duration-300 hover:-translate-y-1 ${
+                eventPackage.highlighted
+                  ? 'border-2 border-gold shadow-glow'
+                  : 'border border-pine/10 shadow-soft'
+              }`}
             >
               {eventPackage.highlighted ? (
                 <span className="mb-4 inline-flex w-fit rounded-full bg-gold px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-pine">
-                  Popular
+                  Most popular
                 </span>
               ) : null}
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-fairway">
                 {eventPackage.bestFor}
               </p>
               <h3 className="mt-4 text-3xl font-black text-pine">{eventPackage.name}</h3>
-              <p className="mt-3 text-2xl font-black text-gold">{eventPackage.price}</p>
+              <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span className="text-4xl font-black text-gold">{eventPackage.price}</span>
+                <span className="text-sm font-bold text-ink/60">{eventPackage.priceNote}</span>
+              </div>
+              <p className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-fairway">
+                <Users className="h-4 w-4 shrink-0" aria-hidden="true" />
+                {eventPackage.groupSize}
+              </p>
               <ul className="mt-7 grid gap-3">
                 {eventPackage.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
@@ -495,6 +512,9 @@ function PackagesSection() {
                 ))}
               </ul>
               <div className="mt-auto pt-8">
+                <p className="mb-3 text-center text-xs font-bold uppercase tracking-[0.14em] text-ink/60">
+                  {eventPackage.additionalHours}
+                </p>
                 <BookingButton className="w-full">Book Package</BookingButton>
               </div>
             </article>
