@@ -548,7 +548,9 @@ function CtaBanner() {
 }
 
 function FaqSection() {
-  const [openIndex, setOpenIndex] = useState(0);
+  // -1 means every question starts collapsed, matching the closed sentinel the
+  // toggle below already uses.
+  const [openIndex, setOpenIndex] = useState(-1);
 
   return (
     <section id="faq" className="section-reveal scroll-mt-24 bg-white px-4 py-20 sm:px-6 lg:px-8">
