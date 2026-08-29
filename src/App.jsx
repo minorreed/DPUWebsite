@@ -355,7 +355,7 @@ function Hero() {
       id="home"
       className="relative min-h-[92svh] overflow-hidden bg-black pt-24 text-white sm:min-h-[88svh]"
     >
-      <div className="absolute inset-0 bg-[url('/images/hero-2026-08-29.jpg')] bg-cover bg-[center_60%]" />
+      <div className="absolute inset-0 bg-[url('/images/hero-2026-08-29-3.jpg')] bg-cover bg-center" />
 
       {/* Even darken so the bright simulator screen never blows out. */}
       <div className="absolute inset-0 bg-black/25" />
