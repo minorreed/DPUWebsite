@@ -4,3 +4,10 @@ dist
 .DS_Store
 npm-debug.log*
 .vercel
+
+# Original camera / AI-export source media. Only the optimized web assets
+# (.jpg) are committed; keep the heavy originals out of the repo and the build.
+public/images/*.mov
+public/images/*.MOV
+public/images/*.PNG
+public/images/*-source.png

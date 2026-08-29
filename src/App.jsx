@@ -23,6 +23,7 @@ const siteConfig = {
   logoPath: '/images/drivingparu-logo.jpg',
   logoAlt: 'DrivingParU golf simulator logo',
   tagline: 'Mobile Golf Simulator Events',
+  serviceArea: 'Houston & Surrounding Areas',
   contact: {
     email: 'drivingparu@gmail.com',
     phone: '(713) 360-9990',
@@ -83,6 +84,11 @@ const siteConfig = {
       question: 'Do you bring all the equipment?',
       answer:
         'Yes. DrivingParU brings the simulator setup, tent, clubs, balls, and event equipment needed for guests to play.',
+    },
+    {
+      question: 'What areas do you serve?',
+      answer:
+        'DrivingParU serves Houston and the surrounding area. If your event is outside the immediate Houston area, contact us and we will confirm availability and any travel fee before you book.',
     },
     {
       question: 'How do I book?',
@@ -371,7 +377,7 @@ function Hero() {
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85 [text-shadow:0_1px_16px_rgba(0,0,0,0.55)] sm:text-xl">
             DrivingParU delivers a mobile golf simulator experience for corporate events,
-            birthdays, private parties, and more.
+            birthdays, private parties, and more across Houston and the surrounding area.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <BookingButton className="min-h-12">Book Your Event</BookingButton>
@@ -525,7 +531,9 @@ function PackagesSection() {
           ))}
         </div>
         <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-6 text-white/70">
-          Final pricing and availability may vary by location, event length, and event type.
+          Package pricing covers events in Houston and the surrounding area. Final pricing and
+          availability may vary by location, event length, and event type. Events outside our
+          usual service area may include a travel fee, confirmed before you book.
         </p>
       </div>
     </section>
@@ -611,12 +619,14 @@ function Footer() {
           </div>
           <p className="mt-4 max-w-md leading-7 text-white/70">
             Mobile golf simulator events for corporate gatherings, birthday parties, private
-            events, schools, community celebrations, and more.
+            events, schools, community celebrations, and more. Proudly serving Houston and the
+            surrounding area.
           </p>
         </div>
         <div>
           <h3 className="font-black text-gold">Contact</h3>
-          <p className="mt-4 text-white/70">Email: {siteConfig.contact.email}</p>
+          <p className="mt-4 text-white/70">{siteConfig.serviceArea}</p>
+          <p className="mt-2 text-white/70">Email: {siteConfig.contact.email}</p>
           <p className="mt-2 text-white/70">Phone: {siteConfig.contact.phone}</p>
           <a
             href={`https://www.instagram.com/${siteConfig.contact.instagram}`}
