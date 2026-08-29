@@ -170,16 +170,31 @@ const steps = [
 
 function useRevealOnScroll() {
   useEffect(() => {
-    const elements = document.querySelectorAll('.section-reveal');
+    const elements = Array.from(document.querySelectorAll('.section-reveal'));
+    if (!elements.length) return undefined;
+
+    const revealAll = () => elements.forEach((el) => el.classList.add('is-visible'));
+
+    // Without an observer the sections would stay at opacity 0 forever, so show
+    // everything rather than leaving the page blank below the fold.
+    if (typeof IntersectionObserver === 'undefined') {
+      revealAll();
+      return undefined;
+    }
+
+    // threshold 0 + a bottom margin fires as soon as a section's top edge rises
+    // into view. A percentage threshold can never be met by a section taller
+    // than the viewport, which is how these animations strand tall content.
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.14 },
+      { threshold: 0, rootMargin: '0px 0px -8% 0px' },
     );
 
     elements.forEach((element) => observer.observe(element));
@@ -209,11 +224,9 @@ function InstagramIcon({ className = '' }) {
   );
 }
 
-function BookingButton({ children, className = '', variant = 'primary' }) {
+function BookingButton({ children, className = '' }) {
   const styles =
-    variant === 'primary'
-      ? 'bg-fairway text-white shadow-lg shadow-fairway/25 hover:-translate-y-0.5 hover:bg-grass'
-      : 'border border-white/45 bg-white/10 text-white backdrop-blur hover:bg-white/20';
+    'bg-fairway text-white shadow-lg shadow-fairway/25 hover:-translate-y-0.5 hover:bg-grass';
 
   return (
     <a
@@ -655,7 +668,7 @@ function Footer() {
         </div>
       </div>
       <div className="mx-auto mt-10 max-w-7xl border-t border-white/10 pt-6 text-sm text-white/55">
-        © 2026 {siteConfig.companyName}. All rights reserved.
+        © {new Date().getFullYear()} {siteConfig.companyName}. All rights reserved.
       </div>
     </footer>
   );

@@ -26,13 +26,15 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-.section-reveal {
+/* Scoped to a class main.jsx sets before React renders. If that script never
+   runs, the sections keep their natural visibility instead of staying blank. */
+.js-reveal .section-reveal {
   opacity: 0;
   transform: translateY(22px);
   transition: opacity 700ms ease, transform 700ms ease;
 }
 
-.section-reveal.is-visible {
+.js-reveal .section-reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -42,7 +44,7 @@ a {
     scroll-behavior: auto;
   }
 
-  .section-reveal {
+  .js-reveal .section-reveal {
     opacity: 1;
     transform: none;
     transition: none;
