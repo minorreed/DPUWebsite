@@ -263,10 +263,15 @@ function Header() {
       className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
         solid
           ? 'border-pine/10 bg-cream/90 shadow-sm backdrop-blur-xl'
-          : 'border-transparent bg-[linear-gradient(to_bottom,rgba(0,0,0,0.55),transparent)]'
+          : 'border-transparent'
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      {/* The scrim runs well past the bar so it dissolves into the photo rather than
+          ending in a hard band at the header's own edge. */}
+      {solid ? null : (
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.42),rgba(0,0,0,0.12)_45%,transparent)]" />
+      )}
+      <nav className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a href="#home" onClick={closeMenu} className="flex items-center gap-3">
           <img
             src={siteConfig.logoPath}
