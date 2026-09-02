@@ -33,7 +33,7 @@ const siteConfig = {
     {
       name: 'Par Package',
       price: '$550',
-      priceNote: '2.5-hour minimum',
+      priceNote: '2.5 hours',
       additionalHours: 'Additional hours $75',
       bestFor: 'Backyard parties, birthdays, and small gatherings',
       highlighted: true,
@@ -49,7 +49,6 @@ const siteConfig = {
     {
       name: 'Birdie Package',
       price: '$725',
-      priceNote: '3.5-hour minimum',
       additionalHours: 'Additional hours $0',
       bestFor: 'Corporate events, team building, and larger parties',
       highlighted: false,
@@ -514,7 +513,9 @@ function PackagesSection() {
               <h3 className="mt-4 text-3xl font-black text-pine">{eventPackage.name}</h3>
               <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <span className="text-4xl font-black text-gold">{eventPackage.price}</span>
-                <span className="text-sm font-bold text-ink/60">{eventPackage.priceNote}</span>
+                {eventPackage.priceNote ? (
+                  <span className="text-sm font-bold text-ink/60">{eventPackage.priceNote}</span>
+                ) : null}
               </div>
               <ul className="mt-7 grid gap-3">
                 {eventPackage.features.map((feature) => (
