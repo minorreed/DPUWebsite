@@ -50,7 +50,7 @@ const siteConfig = {
       name: 'Birdie Package',
       price: '$725',
       priceNote: '3.5-hour minimum',
-      additionalHours: 'Additional hours included',
+      additionalHours: 'Additional hours $0',
       bestFor: 'Corporate events, team building, and larger parties',
       highlighted: false,
       features: [
