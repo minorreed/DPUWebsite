@@ -383,11 +383,11 @@ function Hero() {
       <div className="relative mx-auto flex max-w-7xl flex-col justify-center px-4 pb-16 pt-14 sm:px-6 md:pt-20 lg:px-8">
         <div className="flex max-w-3xl flex-col justify-center">
           <h1 className="text-5xl font-black leading-[1.02] tracking-[-0.02em] text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] sm:text-6xl lg:text-7xl">
-            Bring the Driving Range to Your Next Event
+            Mobile Golf Simulator Rentals in Houston
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85 [text-shadow:0_1px_16px_rgba(0,0,0,0.55)] sm:text-xl">
-            DrivingParU delivers a mobile golf simulator experience for corporate events,
-            birthdays, private parties, and more across Houston and the surrounding area.
+            DrivingParU brings a premium golf simulator directly to homes, parties,
+            corporate events, and private events throughout Houston and surrounding areas.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <BookingButton className="min-h-12">Book Your Event</BookingButton>
