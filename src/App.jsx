@@ -33,7 +33,7 @@ const siteConfig = {
     {
       name: 'Par Package',
       price: '$550',
-      priceNote: '2.5 hours',
+      priceNote: 'Includes 2.5 hours',
       additionalHours: 'Additional hours $75',
       bestFor: 'Backyard parties, birthdays, and small gatherings',
       highlighted: true,
