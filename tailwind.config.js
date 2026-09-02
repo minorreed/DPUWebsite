@@ -3,6 +3,14 @@ export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
+      screens: {
+        // Tailwind's breakpoints are width-only, so a 844x390 phone held sideways
+        // matches sm:/md: and gets tablet sizing with almost no vertical room.
+        // This variant catches that case and nothing else: phones in landscape.
+        'landscape-short': {
+          raw: '(orientation: landscape) and (max-height: 500px) and (max-width: 1023px)',
+        },
+      },
       colors: {
         pine: '#073b2a',
         fairway: '#14804a',

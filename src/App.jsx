@@ -285,14 +285,14 @@ function Header() {
       {/* The scrim runs well past the bar so it dissolves into the photo rather than
           ending in a hard band at the header's own edge. */}
       {solid ? null : (
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.42),rgba(0,0,0,0.12)_45%,transparent)]" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 landscape-short:h-24 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.42),rgba(0,0,0,0.12)_45%,transparent)]" />
       )}
-      <nav className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <nav className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-3 landscape-short:py-1.5 sm:px-6 lg:px-8">
         <a href="#home" onClick={closeMenu} className="flex items-center gap-3">
           <img
             src={siteConfig.logoPath}
             alt={siteConfig.logoAlt}
-            className="h-11 w-11 rounded-full border-2 border-white object-cover shadow-md ring-2 ring-fairway/25"
+            className="h-11 w-11 landscape-short:h-9 landscape-short:w-9 rounded-full border-2 border-white object-cover shadow-md ring-2 ring-fairway/25"
           />
           <span className="flex flex-col leading-none">
             <span
@@ -303,7 +303,7 @@ function Header() {
               {siteConfig.companyName}
             </span>
             <span
-              className={`mt-1.5 hidden text-[0.62rem] font-bold uppercase tracking-[0.2em] transition-colors duration-300 sm:block ${
+              className={`mt-1.5 hidden text-[0.62rem] font-bold uppercase tracking-[0.2em] transition-colors duration-300 sm:block landscape-short:hidden ${
                 solid ? 'text-fairway' : 'text-white/75 [text-shadow:0_1px_10px_rgba(0,0,0,0.6)]'
               }`}
             >
@@ -369,7 +369,7 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[92svh] overflow-hidden bg-black pt-24 text-white sm:min-h-[88svh]"
+      className="relative min-h-[92svh] overflow-hidden bg-black pt-24 text-white landscape-short:pt-16 sm:min-h-[88svh]"
     >
       <div className="absolute inset-0 bg-[url('/images/hero-2026-9-1.jpg')] bg-cover bg-center" />
 
@@ -380,16 +380,16 @@ function Hero() {
       {/* Bottom fade so the overlapping TrustBar sits on a clean seam. */}
       <div className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(to_top,#000,transparent)]" />
 
-      <div className="relative mx-auto flex max-w-7xl flex-col justify-center px-4 pb-16 pt-14 sm:px-6 md:pt-20 lg:px-8">
+      <div className="relative mx-auto flex max-w-7xl flex-col justify-center px-4 pb-16 pt-14 sm:px-6 md:pt-20 lg:px-8 landscape-short:pb-6 landscape-short:pt-4">
         <div className="flex max-w-3xl flex-col justify-center">
-          <h1 className="text-5xl font-black leading-[1.02] tracking-[-0.02em] text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] sm:text-6xl lg:text-7xl">
+          <h1 className="text-5xl font-black leading-[1.02] tracking-[-0.02em] text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] sm:text-6xl lg:text-7xl landscape-short:text-4xl">
             Mobile Golf Simulator Rentals in Houston
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85 [text-shadow:0_1px_16px_rgba(0,0,0,0.55)] sm:text-xl">
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85 [text-shadow:0_1px_16px_rgba(0,0,0,0.55)] sm:text-xl landscape-short:mt-3 landscape-short:text-base landscape-short:leading-6">
             DrivingParU brings a premium golf simulator directly to homes, parties,
             corporate events, and private events throughout Houston and surrounding areas.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row landscape-short:mt-4">
             <BookingButton className="min-h-12">Book Your Event</BookingButton>
             <a
               href="#how-it-works"
