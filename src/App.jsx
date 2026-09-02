@@ -34,10 +34,9 @@ const siteConfig = {
       name: 'Par Package',
       price: '$550',
       priceNote: '2.5-hour minimum',
-      groupSize: 'Up to 30 guests',
       additionalHours: 'Additional hours $200',
       bestFor: 'Backyard parties, birthdays, and small gatherings',
-      highlighted: false,
+      highlighted: true,
       features: [
         'Mobile golf simulator setup at your venue',
         'Tent and all equipment provided',
@@ -49,12 +48,11 @@ const siteConfig = {
     },
     {
       name: 'Birdie Package',
-      price: '$975',
+      price: '$725',
       priceNote: '3.5-hour minimum',
-      groupSize: '30 to 100 guests',
       additionalHours: 'Additional hours $250',
       bestFor: 'Corporate events, team building, and larger parties',
-      highlighted: true,
+      highlighted: false,
       features: [
         'Everything included in the Par Package',
         'Dedicated second staff member for larger groups',
@@ -374,7 +372,7 @@ function Hero() {
       id="home"
       className="relative min-h-[92svh] overflow-hidden bg-black pt-24 text-white sm:min-h-[88svh]"
     >
-      <div className="absolute inset-0 bg-[url('/images/hero-2026-08-29-3.jpg')] bg-cover bg-center" />
+      <div className="absolute inset-0 bg-[url('/images/hero-2026-9-1.jpg')] bg-cover bg-center" />
 
       {/* Even darken so the bright simulator screen never blows out. */}
       <div className="absolute inset-0 bg-black/25" />
@@ -518,10 +516,6 @@ function PackagesSection() {
                 <span className="text-4xl font-black text-gold">{eventPackage.price}</span>
                 <span className="text-sm font-bold text-ink/60">{eventPackage.priceNote}</span>
               </div>
-              <p className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-fairway">
-                <Users className="h-4 w-4 shrink-0" aria-hidden="true" />
-                {eventPackage.groupSize}
-              </p>
               <ul className="mt-7 grid gap-3">
                 {eventPackage.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
