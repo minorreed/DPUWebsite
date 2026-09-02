@@ -369,23 +369,23 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[92svh] overflow-hidden bg-black pt-24 text-white landscape-short:pt-16 sm:min-h-[88svh]"
+      className="relative min-h-[92svh] overflow-hidden bg-black pt-24 text-white landscape-short:min-h-0 landscape-short:pt-16 sm:min-h-[88svh]"
     >
-      <div className="absolute inset-0 bg-[url('/images/hero-2026-9-1.jpg')] bg-cover bg-center" />
+      <div className="absolute inset-0 bg-[url('/images/hero-2026-9-1.jpg')] bg-cover bg-center landscape-short:bg-[center_70%]" />
 
       {/* Even darken so the bright simulator screen never blows out. */}
       <div className="absolute inset-0 bg-black/25" />
       {/* Copy scrim: dark under the text, clear over the action. */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.85),rgba(0,0,0,0.2)_60%,transparent)] md:bg-[linear-gradient(to_right,rgba(0,0,0,0.8),rgba(0,0,0,0.35)_45%,transparent_78%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.85),rgba(0,0,0,0.2)_60%,transparent)] md:bg-[linear-gradient(to_right,rgba(0,0,0,0.8),rgba(0,0,0,0.35)_45%,transparent_78%)] landscape-short:bg-[linear-gradient(to_right,rgba(0,0,0,0.9),rgba(0,0,0,0.65)_42%,rgba(0,0,0,0.25)_68%,transparent_88%)]" />
       {/* Bottom fade so the overlapping TrustBar sits on a clean seam. */}
       <div className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(to_top,#000,transparent)]" />
 
-      <div className="relative mx-auto flex max-w-7xl flex-col justify-center px-4 pb-16 pt-14 sm:px-6 md:pt-20 lg:px-8 landscape-short:pb-6 landscape-short:pt-4">
-        <div className="flex max-w-3xl flex-col justify-center">
-          <h1 className="text-5xl font-black leading-[1.02] tracking-[-0.02em] text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] sm:text-6xl lg:text-7xl landscape-short:text-4xl">
+      <div className="relative mx-auto flex max-w-7xl flex-col justify-center px-4 pb-16 pt-14 sm:px-6 md:pt-20 lg:px-8 landscape-short:pb-20 landscape-short:pt-4">
+        <div className="flex max-w-3xl flex-col justify-center landscape-short:max-w-lg">
+          <h1 className="text-5xl font-black leading-[1.02] tracking-[-0.02em] text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] sm:text-6xl lg:text-7xl landscape-short:text-3xl">
             Mobile Golf Simulator Rentals in Houston
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85 [text-shadow:0_1px_16px_rgba(0,0,0,0.55)] sm:text-xl landscape-short:mt-3 landscape-short:text-base landscape-short:leading-6">
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85 [text-shadow:0_1px_16px_rgba(0,0,0,0.55)] sm:text-xl landscape-short:mt-3 landscape-short:text-sm landscape-short:leading-5">
             DrivingParU brings a premium golf simulator directly to homes, parties,
             corporate events, and private events throughout Houston and surrounding areas.
           </p>
