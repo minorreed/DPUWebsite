@@ -34,7 +34,7 @@ const siteConfig = {
       name: 'Par Package',
       price: '$550',
       priceNote: '2.5-hour minimum',
-      additionalHours: 'Additional hours $200',
+      additionalHours: 'Additional hours $75',
       bestFor: 'Backyard parties, birthdays, and small gatherings',
       highlighted: true,
       features: [
@@ -50,7 +50,7 @@ const siteConfig = {
       name: 'Birdie Package',
       price: '$725',
       priceNote: '3.5-hour minimum',
-      additionalHours: 'Additional hours $250',
+      additionalHours: 'Additional hours included',
       bestFor: 'Corporate events, team building, and larger parties',
       highlighted: false,
       features: [
